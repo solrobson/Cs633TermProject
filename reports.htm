@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html  ng-app>
+    <head>
+        <title>Defect System</title>
+        <script src="js/angular.js"></script>
+        <script>
+            function viewDefectController($scope) {
+                $scope.defects =
+                    [{
+                        'ID': 0,
+                        'Title': 'title',
+                        'Description': 'Description',
+                        'Project': 'Project',
+                        'Severity': 1,
+                        'Status': 1,
+                        'Engineer': 'engineer',
+                        'Tester': 'Tester',
+                        'ResolvedVersion': 'Version',
+                        'DiscoveredVersion': 'Version',
+                        'ReportedDate': 'Date',
+                        'Priority': 'priority',
+                        'ResolutionDescription': 'desc',
+                        'FixedTime': 1,
+                        'DateChanged': 'date',
+                        'TestDate': 'Date',
+                        'ReleaseDate': 'Date',
+                        'Visibility': 'true',
+                        'Comments': [{ 'User': 'name', 'Comment': 'Comment' },
+                                    { 'User': 'name', 'Comment': 'Comment'}]
+                    }, {
+                        'ID': 0,
+                        'Title': 'title',
+                        'Description': 'Description',
+                        'Project': 'Project',
+                        'Severity': 1,
+                        'Status': 1,
+                        'Engineer': 'engineer',
+                        'Tester': 'Tester',
+                        'ResolvedVersion': 'Version',
+                        'DiscoveredVersion': 'Version',
+                        'ReportedDate': 'Date',
+                        'Priority': 'priority',
+                        'ResolutionDescription': 'desc',
+                        'FixedTime': 1,
+                        'DateChanged': 'date',
+                        'TestDate': 'Date',
+                        'ReleaseDate': 'Date',
+                        'Visibility': 'true',
+                        'Comments': [{ 'User': 'name', 'Comment': 'Comment' },
+                                    { 'User': 'name', 'Comment': 'Comment'}]
+                    }, {
+                        'ID': 0,
+                        'Title': 'title',
+                        'Description': 'Description',
+                        'Project': 'Project',
+                        'Severity': 1,
+                        'Status': 1,
+                        'Engineer': '',
+                        'Tester': 'Tester',
+                        'ResolvedVersion': 'Version',
+                        'DiscoveredVersion': 'Version',
+                        'ReportedDate': 'Date',
+                        'Priority': 'priority',
+                        'ResolutionDescription': 'desc',
+                        'FixedTime': 1,
+                        'DateChanged': 'date',
+                        'TestDate': 'Date',
+                        'ReleaseDate': 'Date',
+                        'Visibility': 'true',
+                        'Comments': [{ 'User': 'name', 'Comment': 'Comment' },
+                                    { 'User': 'name', 'Comment': 'Comment'}]
+                    }]
+
+                    $scope.Reportdefects = $scope.defects;
+
+                    $scope.progressReport = function () {
+                        angular.forEach($scope.defects, function (defect) {
+                            $scope.Reportdefects = [];
+                            if (defect.Engineer.length == 0) {
+                                $scope.Reportdefects.push(defect);
+                            }
+                        });
+                    }
+
+                    $scope.unassignedReport = function () {
+                        
+                    }
+            }
+        </script>
+    </head>
+    <body ng-controller="viewDefectController">
+        <body ng-controller="viewDefectController">
+        <label>Unassigned Issues</label>
+        <input type="button" value="run" ng-click="unassignedReport()" />
+        <br />
+        <label>Progress Report</label>
+        <input type="button" value="run" ng-click="progressReport()" />
+        <table id="report">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Project</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                    <th>Engineer</th>
+                    <th>Tester</th>
+                    <th>Resolved Version</th>
+                    <th>Discoverd Version</th>
+                    <th>Reported Date</th>
+                    <th>Priority</th>
+                    <th>Resolution Description</th>
+                    <th>Resultion Date</th>
+                    <th>Tested Date</th>
+                    <th>Released Date</th>
+                    <th>Visibility</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="defect in Reportdefects">
+                <tr>
+                    <td>{{defect.ID}}</td>
+                    <td>{{defect.Title}}</td>
+                    <td>{{defect.Project}}</td>
+                    <td>{{defect.Severity}}</td>
+                    <td>{{defect.Status}}</td>
+                    <td>{{defect.Engineer}}</td>
+                    <td>{{defect.Tester}}</td>
+                    <td>{{defect.ResolvedVersion}}</td>
+                    <td>{{defect.DiscoveredVersion}}</td>
+                    <td>{{defect.ReportedDate}}</td>
+                    <td>{{defect.Priority}}</td>
+                    <td>{{defect.ResolutionDescription}}</td>
+                    <td>{{defect.fixedTime}}</td>
+                    <td>{{defect.DateChanged}}</td>
+                    <td> {{defect.TestDate}}</td>
+                    <td>{{defect.ReleaseDate}}</td>
+                    <td>{{defect.Visibility}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

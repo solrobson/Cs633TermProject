@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login</title>
+    <style>
+        #login 
+        {
+            width:250px;
+        }
+        
+        #login label 
+        {
+            float:left;
+        }
+        
+        #login input
+        {
+            float:right;
+        }
+        
+        #login br
+        {
+            clear:both;
+        }
+    </style>
+    <script>
+        window.onload = function ()
+        {
+            localStorage.setItem('currentUser', '');
+        }
+
+        function login()
+        {
+            var data = localStorage.getItem('users');
+            var userList = JSON.parse(data);
+            var user = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            for (var i = 0; i < userList.length; i++)
+            {
+                if (userList[i].UserName == user &&
+                    userList[i].Password == password)
+                {
+                    window.location.href = 'index.htm';
+                }
+                console.log(password);
+                console.log(userList[i].Password);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="login">
+        <label>User Name:</label>
+        <input type="text" id="username"/>
+        <br />
+        <label>Password:</label>
+        <input type="password" placeholder="********" id="password"/>
+        <br />
+        <input type="button" value="Login" onclick="login()" />
+    </div>
+</body>
+</html>

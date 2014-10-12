@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html  ng-app>
+    <head>
+        <title>Defect System</title>
+        <script src="js/angular.js"></script>
+        <script>
+            function viewDefectController($scope)
+            {
+                $scope.defects = [];
+
+                $scope.init = function ()
+                {
+                    var data = JSON.parse(localStorage.getItem("defects"));
+
+                    if(data != null)
+                    {
+                        $scope.defects = data;
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body ng-controller="viewDefectController" ng-init="init()">
+        <a href="addDefect.htm">Add New Defect</a>
+        <a href="reports.htm">Reports</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Project</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                    <th>Engineer</th>
+                    <th>Tester</th>
+                    <th>Resolved Version</th>
+                    <th>Discoverd Version</th>
+                    <th>Reported Date</th>
+                    <th>Priority</th>
+                    <th>Resolution Description</th>
+                    <th>Resultion Date</th>
+                    <th>Tested Date</th>
+                    <th>Released Date</th>
+                    <th>Visibility</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="defect in defects">
+                <tr>
+                    <td>{{defect.ID}}</td>
+                    <td>{{defect.Title}}</td>
+                    <td>{{defect.Project}}</td>
+                    <td>{{defect.Severity}}</td>
+                    <td>{{defect.Status}}</td>
+                    <td>{{defect.Engineer}}</td>
+                    <td>{{defect.Tester}}</td>
+                    <td>{{defect.ResolvedVersion}}</td>
+                    <td>{{defect.DiscoveredVersion}}</td>
+                    <td>{{defect.ReportedDate}}</td>
+                    <td>{{defect.Priority}}</td>
+                    <td>{{defect.ResolutionDescription}}</td>
+                    <td>{{defect.fixedTime}}</td>
+                    <td>{{defect.DateChanged}}</td>
+                    <td> {{defect.TestDate}}</td>
+                    <td>{{defect.ReleaseDate}}</td>
+                    <td>{{defect.Visibility}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
