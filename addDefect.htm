@@ -3,129 +3,12 @@
     <head>
         <title>Add Defect</title>
         <script src="js/angular.js"></script>
-        <script>
-            function viewDefectController($scope)
-            {
-                $scope.addNew = function ()
-                {
-                    $scope.defects.push($scope.defect);
-                    localStorage.setItem("defects", JSON.stringify($scope.defects));
-                    $scope.createNewDefect();
-                }
-
-                $scope.maxID = 0;
-
-                $scope.createNewDefect = function ()
-                {
-                    $scope.maxID = ++$scope.maxID;
-                    $scope.clearDefect();
-                }
-
-                $scope.init = function () 
-                {
-                    var data = JSON.parse(localStorage.getItem("defects"));
-                    if (data == null)
-                    {
-                        $scope.defects = [];
-                    }
-                    else
-                    {
-                        $scope.defects = data;
-                    }
-                    angular.forEach($scope.defects, function (defect)
-                    {
-                        if (defect.ID != undefined)
-                        {
-                            if (defect.ID > $scope.maxID)
-                            {
-                                $scope.maxID = defect.ID;
-                            }
-                        }
-                    });
-                    $scope.createNewDefect();
-                }
-                $scope.newDefect;
-                $scope.clearDefect = function ()
-                {
-                    $scope.defect =
-                       {
-                            'ID': $scope.maxID,
-                            'Title': '',
-                            'Description': '',
-                            'Project': '',
-                            'Severity': 0,
-                            'Status': 0,
-                            'Engineer': '',
-                            'Tester': '',
-                            'ResolvedVersion': '',
-                            'DiscoveredVersion': '',
-                            'ReportedDate': '',
-                            'Priority': '',
-                            'ResolutionDescription': '',
-                            'FixedTime': 1,
-                            'DateChanged': '',
-                            'TestDate': '',
-                            'ReleaseDate': '',
-                            'Visibility': 'true',
-                            'Comments': [{ 'User': '', 'Comment': '' }]
-                        }
-                }
-
-                $scope.defects = [];
-                //=
-                //    [{
-                //        'ID': 0,
-                //        'Title': 'title',
-                //        'Description': 'Description',
-                //        'Project': 'Project',
-                //        'Severity': 1,
-                //        'Status': 1,
-                //        'Engineer': 'engineer',
-                //        'Tester': 'Tester',
-                //        'ResolvedVersion': 'Version',
-                //        'DiscoveredVersion': 'Version',
-                //        'ReportedDate': 'Date',
-                //        'Priority': 'priority',
-                //        'ResolutionDescription': 'desc',
-                //        'FixedTime': 1,
-                //        'DateChanged': 'date',
-                //        'TestDate': 'Date',
-                //        'ReleaseDate': 'Date',
-                //        'Visibility': 'true',
-                //        'Comments': [{ 'User': 'name', 'Comment': 'Comment' },
-                //                    { 'User': 'name', 'Comment': 'Comment'}]
-                //    }]
-            }
-
-        </script>
-
-        <style>
-            #addDefect
-            {
-                width:330px;
-            }
-            #addDefect br + label
-            {
-                float:left;
-            }
-            
-            #addDefect label + label, #addDefect textarea, #addDefect input
-            {
-                float:right;
-            }
-            
-            #addDefect br
-            {
-                clear:both;
-            }
-            
-            #addDefect h1
-            {
-                text-align:center;
-            }
-        </style>
+        <script src="js/dataload.js"></script>
+        <script src="js/addDefectController.js"></script>
+        
+        <link href="styles/styles.css" rel="stylesheet" />
     </head>
-    <body ng-controller="viewDefectController" ng-init="init()">
+    <body ng-controller="addDefectController" ng-init="init()">
         
         <div id="addDefect">
             <div >
@@ -142,6 +25,14 @@
                 <br />
                 <label>Project</label>
                 <input type="text" value={{defect.Project}} />
+                <br />
+                <label>Status</label>
+               <!-- <select "status in statuses">
+                    <option value={{status.ID}}>{{status.Value}}</option>
+                </select>-->
+                <select ng-model="curStatus" ng-options="status.Value for status in statuses">
+
+                </select>
                 <br />
                 <label>Severity</label>
                 <input type="text" value={{defect.Severity}} />
