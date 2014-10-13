@@ -1,14 +1,26 @@
 ﻿/// <reference path="angular.js" />
 /// <reference path="dataload.js" />
 
-
 function addDefectController($scope)
 {
     $scope.addNew = function ()
     {
+        ///<summary>
+        ///Adds the current defect on the screen to the defects list, and
+        ///then creases a new defect.
+        ///</summary>
+        var currentUser = localStorage.getItem(localStorageKeys.currentUser);
+        if (currentUser.length > 0)
+        {
+            currentUser = JSON.parse(currentUser);
+            $scope.defect.Submitter = currentUser.UserName;
+        }
+        $scope.defect.ReportedDate = $scope.defect.DateChanged = getCurrentDateTime();
+        
         $scope.defects.push($scope.defect);
         localStorage.setItem("defects", JSON.stringify($scope.defects));
         $scope.createNewDefect();
+        showDialog('Defect Added', 'The defect has successfully been added.');
     }
 
     $scope.maxID = 0;
@@ -21,12 +33,13 @@ function addDefectController($scope)
 
     $scope.init = function ()
     {
+        ///<summary>
+        ///
         var statuses = localStorage.getItem(localStorageKeys.status);
         if (statuses != null)
         {
             $scope.statuses = JSON.parse(statuses);
             $scope.curStatus = $scope.statuses[0];
-            alert((statuses));
         }
 
         var data = JSON.parse(localStorage.getItem("defects"));
@@ -59,6 +72,7 @@ function addDefectController($scope)
                'Title': '',
                'Description': '',
                'Project': '',
+               'WorkOrder': '',
                'Severity': 0,
                'Status': 0,
                'Engineer': '',
@@ -72,7 +86,11 @@ function addDefectController($scope)
                'DateChanged': '',
                'TestDate': '',
                'ReleaseDate': '',
-               'Visibility': 'true',
+               'ReportedDate': '',
+               'RelatedDefect': '',
+               'Attachments': '',
+               'Submitter': '',
+               'Visibility': '',
                'Comments': [{ 'User': '', 'Comment': '' }]
            }
     }

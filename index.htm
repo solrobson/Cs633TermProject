@@ -3,22 +3,9 @@
     <head>
         <title>Defect System</title>
         <script src="js/angular.js"></script>
-        <script>
-            function viewDefectController($scope)
-            {
-                $scope.defects = [];
-
-                $scope.init = function ()
-                {
-                    var data = JSON.parse(localStorage.getItem("defects"));
-
-                    if(data != null)
-                    {
-                        $scope.defects = data;
-                    }
-                }
-            }
-        </script>
+        <script src="js/dataload.js"></script>
+        <script src="js/viewDefectController.js"></script>
+        <link href="styles/styles.css" rel="stylesheet" />
     </head>
     <body ng-controller="viewDefectController" ng-init="init()">
         <a href="addDefect.htm">Add New Defect</a>
@@ -28,32 +15,37 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
-                    <th>Description</th>
+                    <th>Work Order</th>
                     <th>Project</th>
                     <th>Severity</th>
                     <th>Status</th>
                     <th>Engineer</th>
                     <th>Tester</th>
-                    <th>Resolved Version</th>
-                    <th>Discoverd Version</th>
-                    <th>Reported Date</th>
+                    <th>Submitter</th>
+                    <th>ResolvedVersion</th>
+                    <th>DiscoveredVersion</th>
+                    <th>ReportedDate</th>
                     <th>Priority</th>
-                    <th>Resolution Description</th>
-                    <th>Resultion Date</th>
-                    <th>Tested Date</th>
-                    <th>Released Date</th>
+                    <th>ResolutionDescription</th>
+                    <th>fixedTime</th>
+                    <th>DateChanged</th>
+                    <th>TestDate</th>
+                    <th>Reported Date</th>
+                    <th>ReleaseDate</th>
                     <th>Visibility</th>
                 </tr>
             </thead>
             <tbody ng-repeat="defect in defects">
                 <tr>
-                    <td>{{defect.ID}}</td>
+                    <td><a href="view.htm#{{defect.ID}}">{{defect.ID}}</a></td>
                     <td>{{defect.Title}}</td>
+                    <td>{{defect.WorkOrder}}</td>
                     <td>{{defect.Project}}</td>
                     <td>{{defect.Severity}}</td>
                     <td>{{defect.Status}}</td>
                     <td>{{defect.Engineer}}</td>
                     <td>{{defect.Tester}}</td>
+                    <td>{{defect.Submitter}}</td>
                     <td>{{defect.ResolvedVersion}}</td>
                     <td>{{defect.DiscoveredVersion}}</td>
                     <td>{{defect.ReportedDate}}</td>
@@ -62,6 +54,7 @@
                     <td>{{defect.fixedTime}}</td>
                     <td>{{defect.DateChanged}}</td>
                     <td> {{defect.TestDate}}</td>
+                    <td> {{defect.ReportedDate}}</td>
                     <td>{{defect.ReleaseDate}}</td>
                     <td>{{defect.Visibility}}</td>
                 </tr>

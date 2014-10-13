@@ -29,7 +29,7 @@
     float:left;
 }
             
-#addDefect label + label, #addDefect textarea, #addDefect input
+#addDefect label + label, #addDefect textarea, #addDefect input, #addDefect select
 {
     float:right;
 }
@@ -40,6 +40,40 @@
 }
             
 #addDefect h1
+{
+    text-align:center;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+nav li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+#editDefect
+{
+    width:330px;
+}
+#editDefect br + label
+{
+    float:left;
+}
+            
+#editDefect label + label, #editDefect textarea, #editDefect input
+{
+    float:right;
+}
+            
+#editDefect br
+{
+    clear:both;
+}
+            
+#editDefect h1
 {
     text-align:center;
 }

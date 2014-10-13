@@ -9,7 +9,14 @@
         <link href="styles/styles.css" rel="stylesheet" />
     </head>
     <body ng-controller="addDefectController" ng-init="init()">
-        
+        <nav>
+            <ul>
+                <li><a href="index.htm">Home</a></li>
+                <li><a href="reports.htm">Reports</a></li>
+                <li><a href="addDefect.htm">Add Defect</a></li>
+                <li><a href="login.htm">Logout</a></li>
+            </ul>
+        </nav>
         <div id="addDefect">
             <div >
                 <h1>Add New Defect</h1>
@@ -18,59 +25,64 @@
                 <label> {{defect.ID}}</label>
                 <br />
                 <label>Title:</label>
-                <input type="text" value={{defect.Title}} />
+                <input type="text" ng-model="defect.Title" maxlength="20" />
                 <br />
                 <label>Description</label>
-                <textarea rows="5" cols="20">{{defect.Description}}</textarea>
+                <textarea rows="5" cols="20" maxlength="500" spellcheck="true" ng-model="defect.Description"></textarea>
+                <br />
+                <label>Work Order</label>
+                <input type="text" ng-model="defect.WorkOrder" />
                 <br />
                 <label>Project</label>
-                <input type="text" value={{defect.Project}} />
+                <input type="text" ng-model="defect.Project" />
                 <br />
                 <label>Status</label>
-               <!-- <select "status in statuses">
-                    <option value={{status.ID}}>{{status.Value}}</option>
-                </select>-->
-                <select ng-model="curStatus" ng-options="status.Value for status in statuses">
-
+                <select ng-model="defect.Status" ng-options="status.Value for status in statuses">
                 </select>
                 <br />
                 <label>Severity</label>
-                <input type="text" value={{defect.Severity}} />
+                <input type="text" ng-model="defect.Severity" />
                 <br />
                 <label>Tester</label>
-                <input type="text" value={{defect.Tester}} />
+                <input type="text" ng-model="defect.Tester" />
                 <br />
-                <label>Resolved Version</label>
-                <input type="text" value={{defect.ResolvedVersion}} />
+                <label>Engineer</label>
+                <input type="text" ng-model="defect.Engineer" />
                 <br />
+                <!--<label>Resolved Version</label>
+                <input type="text" ng-model="defect.ResolvedVersion" />
+                <br />-->
                 <label>Discovered Version</label>
-                <input type="text" value={{defect.DiscoveredVersion}} />
+                <input type="text" ng-model="defect.DiscoveredVersion" />
                 <br />
-                <label>Reported Date</label>
+                <!--<label>Reported Date</label>
                 <label>{{defect.ReportedDate}}</label>
-                <br />
+                <br />-->
                 <label>Priority</label>
-                <input type="number" value={{defect.Priority}} />
+                <input type="number" ng-model="defect.Priority" min="0" max="99" maxlength="2"/>
                 <br />
-                <label>Resolution Description</label>
-                <textarea rows="5" cols="20">{{defect.ResolutionDescription}}</textarea>
-                <br />
-                <label>Fixed Time</label>
-                <input type="number" value={{defect.FixedTime}} />
-                <br />
-                <label>Date Changed</label>
+                <!--<label>Resolution Description</label>
+                <textarea rows="5" cols="20" ng-model="defect.ResolutionDescription"></textarea>
+                <br />-->
+                <!--<label>Fixed Time</label>
+                <input type="number" ng-model="defect.FixedTime" />
+                <br />-->
+                <!--<label>Date Changed</label>
                 <label>{{defect.DateChanged}}</label>
-                <br />
-                <label>Test Date</label>
+                <br />-->
+               <!-- <label>Test Date</label>
                 <label>{{defect.TestDate}}</label>
-                <br />
-                <label>Release Date</label>
+                <br />-->
+                <!--<label>Release Date</label>
                 <label>{{defect.ReleaseDate}}</label>
+                <br />-->
+                <label>Attachments</label>
+                <textarea cols="20" rows="4" ng-model="defect.Attachments"></textarea>
                 <br />
                 <label>Visibility</label>
-                <input type="checkbox" value={{defect.visibility}} />
+                <input type="checkbox" ng-model="defect.visibility" />
                 <br />
-            
+                
                 <input type="button" value="Add Defect" ng-click="addNew()" />
             </div>
         </div>

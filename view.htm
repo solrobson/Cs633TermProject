@@ -3,84 +3,21 @@
     <head>
         <title>Defect System</title>
         <script src="js/angular.js"></script>
-        <script>
-            function viewDefectController($scope)
-            {
-                $scope.defects;
-                $scope.defect;
-                $scope.defectID;
-                $scope.newComment;
-                $scope.clearComment = function ()
-                {
+        <script src="js/dataload.js"></script>
+        <script src="js/editDefectController.js"></script>
+        <link href="styles/styles.css" rel="stylesheet" />
 
-                }
-
-                $scope.init = function ()
-                {
-                    var data = localStorage.getItem('defects');
-                    var hash = window.location.hash;
-                    $scope.defectID = parseInt(hash.substr(1));
-                    if (data != null)
-                    {
-                        $scope.defects = JSON.parse(data);
-                    }
-
-                    angular.forEach($scope.defects, function (defect)
-                    {
-                        if (defect.ID == $scope.defectID)
-                        {
-                            $scope.defect = defect;
-                        }
-                    });
-                }
-                
-                $scope.addComment = function ()
-                {
-                    $scope.updateRecord();
-                }
-
-                $scope.updateRecord = function ()
-                {
-                    angular.forEach($scope.defects, function (defect)
-                    {
-                        if (defect.ID == $scope.defectID)
-                        {
-                            defect = $scope.defect;
-                        }
-                    });
-                    localStorage.setItem('defects', JSON.stringify($scope.defects));
-                }
-            }
-        </script>
-
-        <style>
-            #addDefect
-            {
-                width:330px;
-            }
-            #addDefect br + label
-            {
-                float:left;
-            }
-            
-            #addDefect label + label, #addDefect textarea, #addDefect input
-            {
-                float:right;
-            }
-            
-            #addDefect br
-            {
-                clear:both;
-            }
-            
-            #addDefect h1
-            {
-                text-align:center;
-            }
-        </style>
     </head>
     <body ng-controller="viewDefectController" ng-init="init()">
-        <div id="addDefect">
+        <nav>
+            <ul>
+                <li><a href="index.htm">Home</a></li>
+                <li><a href="reports.htm">Reports</a></li>
+                <li><a href="addDefect.htm">Add Defect</a></li>
+                <li><a href="login.htm">Logout</a></li>
+            </ul>
+        </nav>
+        <div id="editDefect">
             <h1></h1>
             <label>ID</label>
             <label> {{defect.ID}}</label>
@@ -89,34 +26,46 @@
             <input type="text" value={{defect.Title}} />
             <br />
             <label>Description</label>
-            <textarea rows="5" cols="20">{{defect.Description}}</textarea>
+            <textarea rows="5" cols="20" ng-model="defect.Description"></textarea>
             <br />
+            <label>Work Order</label>
+            <input type="text" ng-model="defect.WorkOrder" />
             <label>Project</label>
-            <input type="text" value={{defect.Project}} />
+            <input type="text" ng-model="defect.Project" />
+            <br />
+            <label>Status</label>
+            <select ng-model="defect.Status" ng-options="status.Value for status in statuses">
+            </select>
             <br />
             <label>Severity</label>
-            <input type="text" value={{defect.Severity}} />
+            <input type="text" ng-model="defect.Severity" />
             <br />
             <label>Tester</label>
-            <input type="text" value={{defect.Tester}} />
+            <input type="text" ng-model="defect.Tester" />
+            <br />
+            <label>Engineer</label>
+            <input type="text" ng-model="defect.Engineer" />
+            <br />
+            <label>Tester</label>
+            <input type="text" ng-model="defect.Tester" />
             <br />
             <label>Resolved Version</label>
-            <input type="text" value={{defect.ResolvedVersion}} />
+            <input type="text" ng-model="defect.ResolvedVersion" />
             <br />
             <label>Discovered Version</label>
-            <input type="text" value={{defect.DiscoveredVersion}} />
+            <input type="text" ng-model="defect.DiscoveredVersion" />
             <br />
             <label>Reported Date</label>
             <label>{{defect.ReportedDate}}</label>
             <br />
             <label>Priority</label>
-            <input type="number" value={{defect.Priority}} />
+            <input type="number" ng-model="defect.Priority" />
             <br />
             <label>Resolution Description</label>
-            <textarea rows="5" cols="20">{{defect.ResolutionDescription}}</textarea>
+            <textarea rows="5" cols="20" ng-model="defect.ResolutionDescription"></textarea>
             <br />
             <label>Fixed Time</label>
-            <input type="number" value={{defect.FixedTime}} />
+            <input type="number" ng-model="defect.FixedTime" />
             <br />
             <label>Date Changed</label>
             <label>{{defect.DateChanged}}</label>
@@ -127,8 +76,11 @@
             <label>Release Date</label>
             <label>{{defect.ReleaseDate}}</label>
             <br />
+            <label>Attachments</label>
+            <textarea cols="20" rows="4" ng-model="defect.Attachments"></textarea>
+            <br />
             <label>Visibility</label>
-            <input type="checkbox" value={{defect.visibility}} />
+            <input type="checkbox" ng-model="defect.visibility" />
             <br />
             <input type="button" value="Update" ng-click="updateRecord()"
             <div>
