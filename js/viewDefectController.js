@@ -7,6 +7,8 @@ function viewDefectController($scope)
 
     $scope.init = function ()
     {
+        ///<summary>
+        ///Loads the 
         var data = JSON.parse(localStorage.getItem("defects"));
 
         if (data != null)

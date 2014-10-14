@@ -1,16 +1,18 @@
 ﻿/// <reference path="dataload.js" />
 /// <reference path="angular.js" />
 
-function viewDefectController($scope)
+function reportController($scope)
 {
     $scope.defects;
 
     $scope.Reportdefects = $scope.defects;
 
-    
-
     $scope.init = function ()
     {
+        ///<summary>
+        /// Initializes the view defect controller.  The defect data is loaded,
+        ///from localStorage.
+        ///</summary>
         var data = localStorage.getItem("defects");
 
         if (data.length > 0)
@@ -23,6 +25,10 @@ function viewDefectController($scope)
 
     $scope.progressReport = function ()
     {
+        ///<summary>
+        ///Creates a reported based on defects that are ready for fix.
+        ///</summary>
+
         $scope.Reportdefects = [];
         angular.forEach($scope.defects, function (defect)
         {
@@ -42,7 +48,6 @@ function viewDefectController($scope)
         $scope.Reportdefects = [];
         angular.forEach($scope.defects, function (defect)
         {
-
             if (defect.Engineer.length == 0)
             {
                 $scope.Reportdefects.push(defect);

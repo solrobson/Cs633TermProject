@@ -7,7 +7,7 @@
         <script src="js/reportControl.js"></script>
         <link href="styles/styles.css" rel="stylesheet" />
     </head>
-    <body ng-controller="viewDefectController" ng-init="init()">
+    <body ng-controller="reportController" ng-init="init()">
         <nav>
             <ul>
                 <li><a href="index.htm">Home</a></li>
@@ -16,7 +16,6 @@
                 <li><a href="login.htm">Logout</a></li>
             </ul>
         </nav>
-        <body ng-controller="viewDefectController">
         <label>Unassigned Issues</label>
         <input type="button" value="run" ng-click="unassignedReport()" />
         <br />
