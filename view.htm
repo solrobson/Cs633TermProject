@@ -30,6 +30,7 @@
             <br />
             <label>Work Order</label>
             <input type="text" ng-model="defect.WorkOrder" />
+            <br />
             <label>Project</label>
             <input type="text" ng-model="defect.Project" />
             <br />
@@ -85,11 +86,12 @@
             <input type="button" value="Update" ng-click="updateRecord()"
             <div>
                 <h1>Add Comment</h1>
-                <label>User Name</label>
-                <input type="text" />
+                <br />
+                <label>Title</label>
+                <input type="text" ng-model="newComment.Title" />
                 <br />
                 <label>Comment</label>
-                <textarea rows="5" cols="20"></textarea>
+                <textarea rows="5" cols="20" ng-model="newComment.Comment"></textarea>
                 <br />
                 <input type="button" ng-click="addComment()" value="Add Comment" />
             </div>
@@ -98,8 +100,11 @@
             <div ng-repeat="comment in defect.Comments">
                 <fieldset>
                     <legend>{{comment.Title}}</legend>
+                    <label>Posted on:</label>
+                    <label>{{comment.Date}}</label>
+                    <br />
                     <label>User Name:</label>
-                    <label>{{comment.user}}</label>
+                    <label>{{comment.UserName}}</label>
                     <br />
                     <p>{{comment.Comment}}</p>
                 </fieldset>

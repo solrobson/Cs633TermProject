@@ -53,7 +53,7 @@ function initStatus()
         var statuses = [
             { ID: 1, Value: "Open" },
             { ID: 2, Value: "Ready To Fix" },
-            { ID: 3, Value: "Ready To Text" },
+            { ID: 3, Value: "Ready To Test" },
             { ID: 4, Value: "Closed" }];
 
         localStorage.setItem(localStorageKeys.status, JSON.stringify(statuses));
